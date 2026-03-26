@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeGenie — What can you cook today?</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}?v=2">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div class="shell">
+
+    <!-- LEFT: CHAT -->
+    <div class="left">
+      <div class="left-header">
+        <div class="brand">
+          <div class="brand-icon">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+          </div>
+          <span class="brand-name">RecipeGenie </span>
+        </div>
+        <div class="brand-sub">Tell me what's in your fridge</div>
+      </div>
+
+      <div class="feed" id="feed">
+        <div class="msg-bot">
+          <div class="av">✦</div>
+          <div class="bbl">
+            Hi! Tell me what ingredients you have and I'll find recipes you can make right now.<br><br>
+            Try: <b>egg tomato onion</b> or <b>rice chicken soy sauce</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-bar">
+        <input id="userInput" placeholder="e.g. bread egg butter…" autocomplete="off">
+        <button class="send" id="sendBtn" aria-label="Send">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT: RECIPE DETAIL -->
+    <div class="right" id="rightPanel">
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-plate">🍽</div>
+        <div class="empty-title">What can I cook tonight?</div>
+        <div class="empty-hint">Type your ingredients on the left, then click <b>"Cook this"</b> on any recipe to see
+          the full guide here.</div>
+        <div class="empty-chips">
+          <span class="chip" data-fill="egg tomato onion">🥚 egg tomato onion</span>
+          <span class="chip" data-fill="rice chicken soy sauce">🍚 rice chicken</span>
+          <span class="chip" data-fill="bread butter cheese">🧀 bread butter cheese</span>
+          <span class="chip" data-fill="banana milk sugar">🍌 banana milkshake</span>
+        </div>
+      </div>
+
+      <div class="recipe-view" id="recipeView">
+        <div class="recipe-hero">
+          <div class="recipe-hero-top">
+            <span class="recipe-time-badge">⏱ <span id="rTime"></span></span>
+            <button class="close-recipe" id="closeRecipeBtn">✕ Close</button>
+          </div>
+          <div class="recipe-title" id="rName"></div>
+        </div>
+        <hr class="divider">
+        <div class="recipe-body">
+          <div>
+            <div class="section-head">Ingredients</div>
+            <div class="ings-grid" id="rIngs"></div>
+          </div>
+          <div>
+            <div class="section-head">Step-by-Step</div>
+            <div class="steps-wrap" id="rSteps"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
